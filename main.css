@@ -1,0 +1,27 @@
+  .Box {
+    height: 50px;
+    width: 50px;
+  box-align: bottom;
+    float: left;
+    position: relative;
+  }
+  
+  .Floor {
+    background-color: powderblue;
+  }
+  
+  .Crate {
+    background-color: brown;
+  }
+  
+  .Player {
+    background-color: black;
+  }
+  
+  .Wall {
+    background-color: gray;
+  }
+
+  .Goal {
+    background-color: green;
+  }
