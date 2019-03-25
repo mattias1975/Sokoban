@@ -13,7 +13,9 @@
   .Crate {
     background-color: brown;
   }
-  
+  .Goal {
+    background-color: green;
+  }
   .Player {
     background-color: black;
   }
@@ -22,6 +24,8 @@
     background-color: gray;
   }
 
-  .Goal {
-    background-color: green;
-  }
+  
+
+  .Goal  .Player{
+    background-color: black;
+}

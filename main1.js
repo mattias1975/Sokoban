@@ -3,6 +3,7 @@
 const player = {
     yRow: -1,
     xCell: -1
+    .top
 }
 
 const Crate = {
@@ -72,16 +73,23 @@ function keyConverter(e) {
 
         case "ArrowUp":
             console.log("loguppS")
+            console.log(player.xCell);
             MovePlayer(0, -1);
+            console.log(MovePlayer);
 
 
             break;
         case "ArrowDown":
-            MovePlayer(0, 1);
-
+        console.log("down")
+           MovePlayer(0, 1);
+           console.log(MovePlayer);
             break;
         case "ArrowLeft":
-            MovePlayer(-1, 0);
+        console.log("logleft")
+        MovePlayer(-1,0);
+      
+      
+
             break;
 
         case "ArrowRight":
@@ -92,67 +100,79 @@ function keyConverter(e) {
 
 
 
-    function MovePlayer(moveX, moveY)//gör en function move i x och y led
+
+    function MovePlayer(moveX, moveY,)//gör en function move i x och y led
+    
     {
+      
         let newY;
         let newX;
 
         newY = player.yRow + moveY;//flyttar i yaxel
         newX = player.xCell + moveX;//flyttar i x axel
+      
 
         let MovePlayer = document.getElementById("y" + player.yRow + "x" + player.xCell);//constant playerElement get y och x axel
-        console.log(MovePlayer);
+      
         //nästa block
+        console.log(player.xCell)
         
         let Movenext = document.getElementById("y" + newY + "x" + newX);//constant playerElement get y och x axel
-        console.log(Movenext);
+      if(Movenext.classList.contains("Floor")|| Movenext.classList.contains("Goal"))
+      {
+        MovePlayer.classList.remove("Player");
         Movenext.classList.add("Player");
-        console.log(Movenext.className);
-
-
-    }
-
-    function MoveCrate(moveCX, moveCY) {
-        let newCY;
-        let newCX;
-
-        newCY = Crate.yRow + moveCY;//flyttar i x axel
-        newCX = Crate.xCell + moveCX;//flyttar i x axel
-
-
-        let CrateMove = document.getElementById("Cy" + newCY + "CY" + newCY);//moveToCube får värde från new y och new x
-
-
-
-        // const infrontOfCrate = Document.getElementById("y" + newY + "x" + newX);
-
-        let moveY;
-        let moveX;
-        let newY = player.yRow + moveY;//flyttar i x axel
-        let newX = player.xCell + moveX;
-        moveY = player.Yrow + 1;
-        moveX = player.xCell + 1;
-
-        let MoveToCube = document.getElementById("y" + newCY + "x" + newCX);//moveToCube får värde från new y och new x
-        console.log(moveToCube);
-        if (MoveToCube.classList.Contains("floor") || MoveToCube.classList.Contains("Goal")) {
-            let moveToCube = document.getElementById("y" + newY + "x" + newX);//moveToCube får värde från new y och new x
-
-            //flytta
-            playerElement.classList.remove("Player");//tar bort spelarens gamla possition 
-            player.yRow = newY;//flyttar spelaren till nya y positionen
-            player.xCell = newX;//flyttar spelaren till nya x poaitionwn
-            moveToCube.classList.add("Player");//addar ny position
+        
+        player.xCell=newX;
+        player.yRow=newY;
+      
+      }
+    if(Movenext.classList.contains("Crate"))
+        {
+           MoveCrate.classList.contains.remove("Crate")
+           MoveCrate.classList.contains.add("Crate");
+            
+            Crate.xCell=newX;
+            Crate.yRow=newY; 
         }
-        let createElement = document.getElementById("y" + newY + "x" + newY);
-        if (MoveCrate.classList.contains("floor") || MoveCrate.classList.contains("Goal") && player.xCell == Crate.xCell - 1 && Crate != "wall") {
-
-            CrateElement.classList.remove("Crate");//tar bort block
-            Crate.yRow = newCY;//ger Crate ny y pos
-            Crate.xCell = newCX;// ger Crate ny x pos
-            MoveCrate.classList.add("Crate"); //lägger till en ny Crate på nya postionen
-        }
+    
     }
 }
+
+
+
+    function MoveCrate(moveCX, moveCY) {
+       
+        {
+      
+            let newY;
+            let newX;
+    
+            newY = Crate.yRow + moveY;//flyttar i yaxel
+            newX = Crate.xCell + moveX;//flyttar i x axel
+          
+    
+            let MoveCrate= document.getElementById("y" + Crate.yRow + "x" + Crate.xCell);//constant playerElement get y och x axel
+          
+            //nästa block
+            console.log(Crate.xCell)
+            
+            let Movenext = document.getElementById("y" + newY + "x" + newX);//constant playerElement get y och x axel
+          if(MoveCrate.classList.contains("Player"))
+          {
+            MoveCrate.classList.remove("Crate");
+            MoveCrate.classList.add("Crate");
+            
+            Crate.xCell=newX;
+            Crate.yRow=newY;
+          
+          }
+            
+        
+        }
+    }
+
+    
+
 
 DrawMap();
