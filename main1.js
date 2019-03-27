@@ -73,7 +73,7 @@ function keyConverter(e) {
 
         case "ArrowUp":
             MovePlayer(0, -1);
-            MoveCrate();
+
             break;
 
         case "ArrowDown":
@@ -106,21 +106,16 @@ function keyConverter(e) {
         newY = player.yRow + moveY;//flyttar i yaxel
         newX = player.xCell + moveX;//flyttar i x axel
 
-        newYy = player.yRow + moveY+moveY;//flyttar i yaxel
-        newXx = player.xCell + moveX+moveX;//flyttar i x axel
+        newYy = player.yRow + moveY + moveY;//flyttar i yaxel
+        newXx = player.xCell + moveX + moveX;//flyttar i x axel
 
         let MovePlayer = document.getElementById("y" + player.yRow + "x" + player.xCell);//constant playerElement get y och x axel
 
-        console.log('player: ' + MovePlayer.className);
-        //nästa block
-
         let Movenext = document.getElementById("y" + newY + "x" + newX);//constant playerElement get y och x axel
-        
-        console.log('next block: ' + Movenext.className);
 
+        let MoveCrate = document.getElementById("y" + Crate.yRow + "x" + Crate.xcell);
         let Movenextnext = document.getElementById("y" + newYy + "x" + newXx);//constant playerElement get y och x axel
 
-        console.log('next next block: ' + Movenextnext.className);
 
         if (Movenext.classList.contains("Floor") || Movenext.classList.contains("Goal")) {
             MovePlayer.classList.remove("Player");
@@ -128,41 +123,38 @@ function keyConverter(e) {
 
             player.xCell = newX;
             player.yRow = newY;
+
+
+
+
+            if (Movenextnext.classList.contains("Crate")||  Movenextnext.classList.contains("Goal")) {
+                let MovenextnextCrate = document.getElementById("y" + newYy + "x" + newXx);//constant playerElement get y och x axel
+                
+                Movenextnext.classList.remove("Crate");
+                Crate.xcell=newX+1;
+                Crate.yRow=newY;
+
+                Movenext.classList.add("Crate")
+               
+
+
+
+            }
         }
-        if (Movenextnext.Crate)
-        {
-            MoveCrate();
-        }
-      
-        
+
+
+
 
 
 
     }
 
 
-    function MoveCrate(moveX, moveY) {
-
-     console.log("Go  Crate")
-
-     let newY;
-     let newX;
-     let newXx;
-     let newYy;
-
-     newY = Crate.yRow + moveY;//flyttar i yaxel
-     newX = Crate.xCell + moveX;//flyttar i x axel
-
-     newYy = Crate.yRow + moveY+moveY;//flyttar i yaxel
-     newXx = Crate.xCell + moveX+moveX;//flyttar i x axel
-
-     let MoveCrate = document.getElementById("y" + player.yRow + "x" + player.xCell);//constant playerElement get y och x axel
-
-        }
 
 
 
-    }
+}
+
 
 
 
