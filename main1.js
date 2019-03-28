@@ -103,8 +103,19 @@ function keyConverter(e) {
         let newXx;
         let newYy;
 
+        let newCY;
+        let newCX;
+        let newCXx;
+        let newCYy;
+
         newY = player.yRow + moveY;//flyttar i yaxel
         newX = player.xCell + moveX;//flyttar i x axel
+
+        newYy = player.yRow + moveY + moveY;//flyttar i yaxel
+        newXx = player.xCell + moveX + moveX;//flyttar i x axel
+
+        newCY = Crate.yRow + moveY;//flyttar i yaxel
+        newCX = Crate.xCell + moveX;//flyttar i x axel
 
         newYy = player.yRow + moveY + moveY;//flyttar i yaxel
         newXx = player.xCell + moveX + moveX;//flyttar i x axel
@@ -113,51 +124,41 @@ function keyConverter(e) {
 
         let Movenext = document.getElementById("y" + newY + "x" + newX);//constant playerElement get y och x axel
 
-        let MoveCrate = document.getElementById("y" + Crate.yRow + "x" + Crate.xcell);
+
         let Movenextnext = document.getElementById("y" + newYy + "x" + newXx);//constant playerElement get y och x axel
 
 
-        if (Movenext.classList.contains("Floor") || Movenext.classList.contains("Goal")) {
+        
+        if (Movenext.classList.contains("Floor") || Movenext.classList.contains("Goal")&& !Movenextnext.classList.contains("Crate")) {
             MovePlayer.classList.remove("Player");
             Movenext.classList.add("Player");
 
             player.xCell = newX;
             player.yRow = newY;
 
-
-
-
-            if (Movenextnext.classList.contains("Crate")||  Movenextnext.classList.contains("Goal")) {
-                let MovenextnextCrate = document.getElementById("y" + newYy + "x" + newXx);//constant playerElement get y och x axel
-                
-                Movenextnext.classList.remove("Crate");
-                Crate.xcell=newX+1;
-                Crate.yRow=newY;
-
-                Movenext.classList.add("Crate")
+            if(!Movenextnext.classList.contains("wall"))
+            {
+            if(Movenext.classList.contains("Crate"))
+                       {
+            if (!Movenextnext.classList.contains("Crate") ) {
                
+                {
+          
+                console.log("move Carte");
+                Movenext.classList.remove("Crate");
 
-
+                Movenextnext.classList.add("Crate")
+                }
 
             }
+      
         }
-
-
-
-
-
-
+    }
+    
+    }
+  
     }
 
-
-
-
-
-}
-
-
-
-
-
+    }
 
 DrawMap();

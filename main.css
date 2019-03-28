@@ -9,13 +9,14 @@
   .Floor {
     background-color: powderblue;
   }
+  .Goal {
+    background-color: green;
+  }
   
   .Crate {
     background-color: brown;
   }
-  .Goal {
-    background-color: green;
-  }
+  
   .Player {
     background-color: black;
   }
